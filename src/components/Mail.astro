@@ -1,0 +1,36 @@
+---
+---
+
+<div
+    class="fixed hidden lg:flex flex-col items-center bottom-0 w-12 right-12 z-10 color-slate-300"
+    data-aos="fade-down"
+    data-aos-delay="1000"
+    id="mail"
+>
+    <a
+        class="duration-200 hover:text-slate-300 hover:-translate-y-2"
+        href="mailto:stevensgoldzyzz@gmail.com"
+    >
+        stevensgoldzyzz@gmail.com</a
+    >
+</div>
+<style>
+    #mail a {
+        padding: 10px;
+        letter-spacing: 0.1em;
+        writing-mode: vertical-rl;
+    }
+    #mail::after {
+        content: "";
+        background-color: var(--slate);
+        display: block;
+        position: relative;
+        height: 100px;
+        margin: 10px auto 0;
+        width: 1px;
+        transition: 200ms;
+    }
+    #mail:hover::after {
+        transform: scaleY(1.1);
+    }
+</style>

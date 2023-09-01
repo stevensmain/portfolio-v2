@@ -1,0 +1,49 @@
+---
+import Github from "./icons/Github";
+import LinkedIn from "./icons/LinkedIn";
+
+const RRSS = [
+    {
+        Icon: Github,
+        href: "https://github.com/stevensmain",
+    },
+    {
+        Icon: LinkedIn,
+        href: "https://www.linkedin.com/in/stivens-carrasquel-a691391b3",
+    },
+];
+---
+
+<div
+    class="fixed hidden md:block bottom-0 w-12 left-12 z-10 color-slate-300"
+    data-aos="fade-up"
+    data-aos-delay="1000"
+    id="rrss"
+>
+    <ul class="flex flex-col gap-4 items-center">
+        {
+            RRSS.map(({ Icon, href }, index) => (
+                <li class="duration-200 hover:text-slate-300 hover:-translate-y-2">
+                    <a href={href}>
+                        <Icon width={30} height={30} />
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</div>
+<style>
+    #rrss::after {
+        content: "";
+        background-color: var(--slate);
+        display: block;
+        position: relative;
+        height: 100px;
+        margin: 10px auto 0;
+        width: 1px;
+        transition: 200ms;
+    }
+    #rrss:hover::after {
+        transform: scaleY(1.1);
+    }
+</style>

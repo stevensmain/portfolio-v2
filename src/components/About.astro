@@ -1,0 +1,76 @@
+---
+import Text from "./ui/Text";
+import Title from "./ui/Title";
+
+const skills = [
+  "JavaScript (ES6+)",
+  "TypeScript",
+  "React",
+  "Eleventy",
+  "Node.js",
+  "WordPress",
+];
+---
+
+<section
+  class="flex flex-col justify-center gap-5 py-12 lg:h-screen"
+  id="about"
+>
+  <Title prevMark="01.">About Me</Title>
+  <div class="flex items-center gap-10 flex-col lg:flex-row">
+    <div class="flex flex-col gap-3 lg:w-6/12">
+      <Text>
+        Hello! My name is Brittany and I enjoy creating things that live on the
+        internet. My interest in web development started back in 2012 when
+      </Text>
+      <p class="text-base text-slate-400">
+        Fast-forward to today, and I’ve had the privilege of working at{" "}
+        <a href="https://starry.com/">a start-up</a>,{" "}
+        <a href="https://www.apple.com/">a huge corporation</a>, and{" "}
+        <a href="https://scout.camd.northeastern.edu/"
+          >a student-led design studio</a
+        >. My main focus these days is building accessible, inclusive products
+        and digital experiences at <a href="https://upstatement.com/"
+          >Upstatement</a
+        > for a variety of clients.
+      </p>
+      <p class="text-base text-slate-400">
+        Here are a few technologies I’ve been working with recently:
+      </p>
+
+      <ul class="flex flex-wrap gap-y-3">
+        {skills && skills.map((skill, i) => <li class="w-6/12">{skill}</li>)}
+      </ul>
+    </div>
+
+    <div class="h-full grid place-items-center lg:w-6/12">
+      <div class="w-8/12 h-8/12 relative group rounded-sm ease duration-200">
+        <img src="/img/steve.jpg" alt="Profile picture" class="w-full h-full" />
+        <div
+          class="w-full h-full z-5 absolute top-4 left-4 -z-10 border-2 border-white rounded-sm ease duration-200 group-hover:top-2 group-hover:left-2"
+        >
+        </div>
+        <div
+          class="w-full h-full z-10 img-profile absolute top-0 bg-opacity-60 ease duration-200"
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  import sr from "../utils/scrollReveal";
+  import { srConfig } from "../utils/config";
+
+  const revealContainer = document.querySelector("#about");
+
+  sr.reveal(revealContainer, srConfig());
+</script>
+<style>
+  .img-profile {
+    background-color: rgba(10, 25, 47, 0.55);
+  }
+  .img-profile:hover {
+    background-color: rgba(10, 25, 47, 0);
+  }
+</style>
