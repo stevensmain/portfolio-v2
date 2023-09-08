@@ -139,7 +139,7 @@ async function renderToStaticMarkup(Component, props, { default: children, ...sl
 	};
 	const newChildren = children ?? props.children;
 	if (children && opts.experimentalReactChildren) {
-		const convert = await import('./chunks/vnode-children.5a6df93a.mjs').then((mod) => mod.default);
+		const convert = await import('./chunks/vnode-children_3769332a.mjs').then((mod) => mod.default);
 		newProps.children = convert(children);
 	} else if (newChildren != null) {
 		newProps.children = React.createElement(StaticHtml, {
@@ -252,6 +252,6 @@ const _renderer0 = {
 	supportsAstroStaticSlot: true,
 };
 
-const renderers = [Object.assign({"name":"@astrojs/react","clientEntrypoint":"@astrojs/react/client.js","serverEntrypoint":"@astrojs/react/server.js","jsxImportSource":"react"}, { ssr: _renderer0 }),];
+const renderers = [Object.assign({"name":"@astrojs/react","clientEntrypoint":"@astrojs/react/client.js","serverEntrypoint":"@astrojs/react/server.js"}, { ssr: _renderer0 }),];
 
 export { renderers };
