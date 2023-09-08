@@ -7,8 +7,5 @@ import netlify from "@astrojs/netlify/functions";
 export default defineConfig({
   integrations: [react(), tailwind()],
   output: "server",
-  adapter: netlify({
-    edgeMiddleware: true,
-    dist: new URL('./dist/', import.meta.url),
-  })
+  adapter: netlify()
 });
