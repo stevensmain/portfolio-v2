@@ -1,15 +1,15 @@
 ---
-import Text from "./ui/Text";
-import Title from "./ui/Title";
+import Text from "./ui/Text"
+import Title from "./ui/Title"
 
 const skills = [
   "JavaScript (ES6+)",
   "TypeScript",
   "React",
-  "Eleventy",
-  "Node.js",
-  "WordPress",
-];
+  "Next",
+  "Express",
+  "Tailwind",
+]
 ---
 
 <section
@@ -20,19 +20,14 @@ const skills = [
   <div class="flex items-center gap-10 flex-col lg:flex-row">
     <div class="flex flex-col gap-3 lg:w-6/12">
       <Text>
-        Hello! My name is Brittany and I enjoy creating things that live on the
-        internet. My interest in web development started back in 2012 when
+        Hello, my name is Stivens Carrasquel. I'm a goal-oriented web developer
+        motivated to demonstrate my abilities by providing important
+        contributions to a team project. Experienced in React, NextJS, Node.js
+        (Express and Nest), and database management.
       </Text>
       <p class="text-base text-slate-400">
-        Fast-forward to today, and I’ve had the privilege of working at{" "}
-        <a href="https://starry.com/">a start-up</a>,{" "}
-        <a href="https://www.apple.com/">a huge corporation</a>, and{" "}
-        <a href="https://scout.camd.northeastern.edu/"
-          >a student-led design studio</a
-        >. My main focus these days is building accessible, inclusive products
-        and digital experiences at <a href="https://upstatement.com/"
-          >Upstatement</a
-        > for a variety of clients.
+        Particularly dedicated to the development of RRSS apps, and management
+        apps.
       </p>
       <p class="text-base text-slate-400">
         Here are a few technologies I’ve been working with recently:
@@ -59,12 +54,12 @@ const skills = [
   </div>
 </section>
 <script>
-  import sr from "../utils/scrollReveal";
-  import { srConfig } from "../utils/config";
+  import sr from "../utils/scrollReveal"
+  import { srConfig } from "../utils/config"
 
-  const revealContainer = document.querySelector("#about");
+  const revealContainer = document.querySelector("#about")
 
-  sr.reveal(revealContainer, srConfig());
+  sr.reveal(revealContainer, srConfig())
 </script>
 <style>
   .img-profile {
