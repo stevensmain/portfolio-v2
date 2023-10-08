@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef } from 'react'
 
 const Menu = ({ navLinks }) => {
   const [menuOpen, setMenuOpen] = useState(false)
-
-  const toggleMenu = () => setMenuOpen(!menuOpen)
-
   const navRef = useRef(null)
 
-  const onResize = e => {
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen)
+  }
+
+  const onResize = (e) => {
     if (e.currentTarget.innerWidth > 768) {
       setMenuOpen(false)
     }
@@ -32,20 +33,19 @@ const Menu = ({ navLinks }) => {
   }, [menuOpen])
 
   return (
-    <nav className='block md:hidden'>
-
+    <nav className='block lg:hidden'>
       <button
-        className='relative z-10 -mr-3 p-4 border-0 bg-transparent linear duration-200'
+        className='relative z-10'
         onClick={toggleMenu}
         aria-label='Menu'
       >
-        <div className='ham-box'>
+        <div className='ham-box w-12 h-12'>
           <div className={`ham-box-inner ${menuOpen ? 'active' : ''}`} />
         </div>
       </button>
 
       <aside
-        className={`block fixed top-0 bottom-0 py-20 px-4 w-72 max-w-md h-screen bg-light-navy duration-300 shadow z-9 ease-in ${menuOpen ? 'right-0' : '-right-full'}`}
+        className={`block fixed top-0 bottom-0 py-20 px-4 w-72 max-w-md h-screen bg-[var(--light-navy)] duration-300 shadow z-9 ease-in ${menuOpen ? 'right-0' : '-right-full'}`}
         aria-hidden={!menuOpen}
         tabIndex={menuOpen ? 1 : -1}
       >
@@ -66,7 +66,6 @@ const Menu = ({ navLinks }) => {
           </a>
         </nav>
       </aside>
-
     </nav>
   )
 }

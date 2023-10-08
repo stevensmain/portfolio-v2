@@ -1,4 +1,5 @@
 ---
+import RevealContainer from "./RevealContainer.jsx"
 import Text from "./ui/Text"
 import Title from "./ui/Title"
 
@@ -12,10 +13,7 @@ const skills = [
 ]
 ---
 
-<section
-  class="flex flex-col justify-center gap-5 py-12 lg:h-screen"
-  id="about"
->
+<RevealContainer id="about" client:only>
   <Title prevMark="01.">About Me</Title>
   <div class="flex items-center gap-10 flex-col lg:flex-row">
     <div class="flex flex-col gap-3 lg:w-6/12">
@@ -52,15 +50,8 @@ const skills = [
       </div>
     </div>
   </div>
-</section>
-<script>
-  import sr from "../utils/scrollReveal"
-  import { srConfig } from "../utils/config"
+</RevealContainer>
 
-  const revealContainer = document.querySelector("#about")
-
-  sr.reveal(revealContainer, srConfig())
-</script>
 <style>
   .img-profile {
     background-color: rgba(10, 25, 47, 0.55);

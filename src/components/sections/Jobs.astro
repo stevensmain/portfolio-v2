@@ -1,0 +1,12 @@
+---
+import RevealContainer from "../RevealContainer.jsx"
+import Title from "../ui/Title"
+import JobsList from "./JobsList"
+---
+
+<RevealContainer id="jobs" client:only>
+  <div class="flex flex-col items-center">
+    <Title prevMark="02. ">Where I’ve Worked</Title>
+    <JobsList client:only />
+  </div>
+</RevealContainer>

@@ -45,8 +45,7 @@ const Nav = () => {
   )
 
   return (
-    <header className={`fixed top-0 py-4 w-full h-24 flex justify-between px-8 md:px-24 duration-200 ease-in items-center bg-navy z-10 backdrop-blur-md ${scrollDirection === 'down' && '-translate-y-24'} ${!scrolledToTop && 'shadow-xl'}`}>
-
+    <header className={`fixed top-0 py-4 w-full h-24 flex justify-between px-8 md:px-24 duration-200 ease-in items-center bg-[var(--navy)] z-10 backdrop-blur-md ${scrollDirection === 'down' && '-translate-y-24'} ${!scrolledToTop && 'shadow-xl'}`}>
       <div
         className='h-12 w-12' data-aos='fade'
         data-aos-duration='300'
@@ -59,7 +58,7 @@ const Nav = () => {
 
       <Menu navLinks={navLinks} />
 
-      <nav className='hidden md:inline-flex text-slate-400'>
+      <nav className='hidden lg:inline-flex text-slate-400'>
         <ol className='flex items-center justify-between gap-8'>
           {navLinks.map(({ url, name }, i) =>
             <li

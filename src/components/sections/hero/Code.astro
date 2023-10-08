@@ -1,10 +1,11 @@
 ---
+
 ---
 
 <div
-  class="bg-slate-900 bg-opacity-50 backdrop-blur-lg grid p-2 rounded-xl w-full divide-y-[1px] divide-zinc-600 gap-2"
+  class="bg-slate-900 bg-opacity-50 backdrop-blur-lg p-2 rounded-xl gap-2 w-full"
 >
-  <div class="flex justify-between items-center">
+  <div class="flex justify-between items-center border-b border-zinc-600">
     <div class="flex gap-1">
       <div
         class="p-1.5 rounded-full bg-zinc-600 hover:bg-red-400 transition-colors"
@@ -40,10 +41,17 @@
   <code id="code">
     <pre
       class="inline-table">
-      <span class="text-blue-400">const welcome = <span class="text-yellow-100"> () </span> =&gt; <span class="text-yellow-100">{"{"}</span><br/>  const aboutMe ={" "}<span class="text-yellow-100">{"{"}</span>
+      <span class="text-blue-400">const welcome = <span class="text-yellow-100"> () </span> =&gt; <span class="text-yellow-100">{"{"}</span><br />  const aboutMe ={" "}<span class="text-yellow-100">{"{"}</span>
       fullname:  <span class="text-yellow-100">'Stivens Carrasquel'</span>,
       age:  <span class="text-sky-300">24</span>,
-      languages: <span class="text-yellow-100">[]</span><br/><span class="text-yellow-100">{'  }'}</span>
+      technologies: <span class="text-yellow-100">[
+        <span class="text-yellow-100">'JavaScript'</span>,
+        <span class="text-yellow-100">'TypeScript'</span>,
+        <span class="text-yellow-100">'React.js'</span>,
+        <span class="text-yellow-100">'Redux'</span>,
+        <span class="text-yellow-100">'Node.js'</span>,
+        <span class="text-yellow-100">'Tailwind'</span>
+      ]</span><br /><span class="text-yellow-100">{'  }'}</span>
       <br />{"  "}return aboutMe<br /><span class="text-yellow-100">{"}"}</span>
       </span>
       <br />welcome<span class="text-yellow-100">()</span>
@@ -52,19 +60,18 @@
 </div>
 <script>
   const info = {
-    name: 'Stivens Carrasquel',
-    age: '24',
-    description : 'Software Developer',
+    name: "Stivens Carrasquel",
+    age: "24",
+    description: "Software Developer",
     contact: {
-      email: 'stevensgoldzyzz@gmail.com',
-      phone: '+584242098193'
-    }
-  } 
+      email: "stevensgoldzyzz@gmail.com",
+      phone: "+584242098193",
+    },
+  }
 
-  
   const clipboardButton = document.querySelector("#clipboard")
 
-  const copyClipboard = navigator.clipboard.writeText(JSON.stringify(info))
-
-  clipboardButton.addEventListener("click", copyClipboard())
+  clipboardButton.addEventListener("click", () => {
+    navigator.clipboard.writeText(JSON.stringify(info))
+  })
 </script>

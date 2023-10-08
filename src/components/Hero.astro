@@ -2,12 +2,9 @@
 import Code from "./sections/hero/Code.astro"
 ---
 
-<section
-  class="relative flex flex-col-reverse justify-center lg:flex-row lg:justify-start lg:items-center h-screen"
-  id="hero"
->
+<section class="h-screen flex items-center" id="hero">
   <section
-    class="inline-flex flex-col justify-center gap-3 xl:w-8/12"
+    class="inline-flex flex-col justify-center gap-3 xl:w-7/12"
     id="hero"
   >
     <h2
@@ -35,7 +32,7 @@ import Code from "./sections/hero/Code.astro"
     </p>
   </section>
   <section
-    class="relative hidden place-items-center xl:grid lg:w-4/12 lg:h-full"
+    class="relative hidden max-w-[40%] lg:flex lg:items-center lg:justify-center lg:flex-1"
   >
     <Code />
   </section>

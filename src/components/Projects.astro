@@ -1,98 +1,66 @@
 ---
-import { userRepositories } from "../services/querys";
-import External from "./icons/External";
-import Github from "./icons/Github";
-import Title from "./ui/Title";
+import Title from "./ui/Title"
+import Github from "./icons/Github"
+import RevealContainer from "./RevealContainer"
+import { userRepositories } from "../services/querys"
+import ProjectCard from "./ProjectCard.astro"
 
 const headers = {
-    "Content-Type": "application/json",
-    Authorization: "Bearer " + import.meta.env.GITHUB_TOKEN,
-};
+  "Content-Type": "application/json",
+  Authorization: "Bearer " + import.meta.env.GITHUB_TOKEN,
+}
 
 const repositories = await fetch("https://api.github.com/graphql", {
-    method: "POST",
-    headers,
-    body: JSON.stringify({ query: userRepositories }),
+  method: "POST",
+  headers,
+  body: JSON.stringify({ query: userRepositories }),
 })
-    .then((res) => {
-
-        if(!res.ok){
-            console.log('Error: ' + res.status)
-            throw new (Error)
-        }
-        return res.json()
-    })
-    .then((jsonResponse) => jsonResponse.data.viewer.repositories.nodes)
-    .then((repos) =>
-        repos.map((repo) => ({
-            ...repo,
-            name: repo.name.replace(/[-_]/g, " "),
-        }))
-    )
-    .catch((err) => {
-        console.log(err);
-        return [];
-    });
+  .then((res) => {
+    if (!res.ok) {
+      console.log("Error: " + res.status)
+      throw new Error()
+    }
+    return res.json()
+  })
+  .then((jsonResponse) => jsonResponse.data.viewer.repositories.nodes)
+  .then((repos) =>
+    repos.map((repo) => ({
+      ...repo,
+      name: repo.name.replace(/[-_]/g, " "),
+    })),
+  )
+  .catch((err) => {
+    console.log(err)
+    return []
+  })
 ---
 
-<section class="flex flex-col justify-center md:h-screen" id="projects">
-    <Title prevMark="03.">Some Things I’ve Built</Title>
-    <ul class="repo-list">
-        {
-            repositories.map((repo) => (
-                <li class="duration-200 hover:-translate-y-2">
-                    <div class="repo-item rounded shadow-lg cursor-pointer">
-                        <div class="flex w-full gap-2 justify-end">
-                            <a
-                                class="text-slate-400 hover:text-emerald-300"
-                                href={repo.url}
-                            >
-                                <Github width={24} height={24} />
-                            </a>
-                            <a
-                                class="text-slate-400 hover:text-emerald-300"
-                                href="/"
-                            >
-                                <External width={24} height={24} />
-                            </a>
-                        </div>
-                        <h2 class="text-2xl font-extrabold text-slate-300">
-                            {repo.name}
-                        </h2>
-                        <p>{repo.description}</p>
-                        <ul>
-                            {repo.languages.nodes.map((language) => (
-                                <li>
-                                    <p>{language.name}</p>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </li>
-            ))
-        }
-    </ul>
-</section>
+<RevealContainer id="projects" client:only>
+  <Title prevMark="03.">Some Things I’ve Built</Title>
+  <ul class="repo-list">
+    {
+      repositories.map(({ languages, name, description, url }) => (
+        <li>
+          <ProjectCard
+            languages={languages}
+            url={url}
+            description={description}
+            name={name}
+          />
+        </li>
+      ))
+    }
+  </ul>
+</RevealContainer>
 <style>
-    .repo-list {
-        list-style: none;
-        padding: 0px;
-        margin: 50px 0px 0px;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 15px;
-        position: relative;
-        width: 100%;
-    }
-    .repo-item {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        position: relative;
-        height: 100%;
-        padding: 2rem 1.75rem;
-        background-color: var(--light-navy);
-        overflow: auto;
-        color: var(--lightest-slate);
-    }
+  .repo-list {
+    list-style: none;
+    padding: 0px;
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+    position: relative;
+    width: 100%;
+  }
 </style>
