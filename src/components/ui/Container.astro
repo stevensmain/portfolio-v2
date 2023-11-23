@@ -1,0 +1,17 @@
+---
+const { id, reveal } = Astro.props
+---
+
+<section
+  id={id}
+  class=`mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24 ${reveal ? 'reveal' : ''}`
+>
+  <slot />
+</section>
+
+<script>
+  import sr, { srConfig } from "../../lib/scrollReveal"
+
+  const revealContainers = document.querySelectorAll(".reveal")
+  revealContainers.forEach((el) => sr.reveal(el, srConfig()))
+</script>

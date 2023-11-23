@@ -1,6 +1,6 @@
 export const userRepositories = `{
     viewer { 
-      repositories(last:6, privacy:PUBLIC){
+      repositories(last:6, privacy:PRIVATE){
         nodes{
           name
           description

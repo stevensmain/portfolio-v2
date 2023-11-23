@@ -1,0 +1,60 @@
+---
+import Container from "../ui/Container.astro"
+import Title from "../ui/Title.astro"
+import ExperiencesCard from "./ExperiencesCard.astro"
+
+const experiences = [
+  {
+    stack: [],
+    description: "",
+    title: "Frontend developer",
+    company: "Cesa MS",
+    location: "Montevideo, Uruguay",
+    range: "Junio 2022 - Actualmente",
+    url: "https://www.linkedin.com/company/cesa-management-solutions/mycompany",
+  },
+  {
+    stack: [],
+    description: "",
+    title: "Frontend developer",
+    company: "Korvuss",
+    location: "Medellin, Colombia",
+    range: "Marzo 2021 - Junio 2022",
+    url: "https://co.linkedin.com/company/korvuss",
+  },
+  {
+    stack: [],
+    description: "",
+    title: "Desarrollador Freelance",
+    company: "Freelance",
+    location: "Caracas, Venezuela",
+    range: "Julio 2020 - Febrero 2021",
+    url: "/",
+  },
+  {
+    stack: [],
+    description: "",
+    title: "Analista TI",
+    company: "Empresas Polar",
+    location: "Caracas, Venezuela",
+    range: "Enero 2018 - Mayo 2019",
+    url: "https://www.linkedin.com/company/empresas-polar",
+  },
+]
+---
+
+<Container id="experiences">
+  <Title>Experiencia</Title>
+
+  <ul>
+    {
+      experiences.map((experience) => {
+        return (
+          <li class="mb-12">
+            <ExperiencesCard experience={experience} />
+          </li>
+        )
+      })
+    }
+  </ul>
+</Container>
