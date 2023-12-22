@@ -1,0 +1,46 @@
+---
+import Container from "../ui/Container.astro"
+
+import AstroBuild from "../icons/AstroBuild.astro"
+import Tailwind from "../icons/Tailwind.astro"
+import AWS from "../icons/AWS.astro"
+---
+
+<Container id="contact" reveal>
+  <div class="flex flex-col gap-5 text-center max-w-xl mx-auto">
+    <div class="flex gap-3 items-center justify-center">
+      <AstroBuild className="w-12 h-12" />
+      <Tailwind className="w-12 h-12" />
+      <AWS className="w-12 h-12" />
+    </div>
+
+    <p>
+      Built with
+      <a
+        href="https://astro.build/"
+        class="font-medium text-slate-400 hover:text-teal-300 focus-visible:text-teal-300"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        Astro
+      </a>
+      and
+      <a
+        href="https://tailwindcss.com/"
+        class="font-medium text-slate-400 hover:text-teal-300 focus-visible:text-teal-300"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        Tailwind CSS
+      </a>, deployed with
+      <a
+        href="https://aws.amazon.com/"
+        class="font-medium text-slate-400 hover:text-teal-300 focus-visible:text-teal-300"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        AWS
+      </a>.
+    </p>
+  </div>
+</Container>
