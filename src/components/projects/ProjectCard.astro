@@ -1,52 +1,62 @@
 ---
+import External from "../icons/External.astro"
+
 interface Props {
+  project: Project
+}
+
+interface Project {
   url: string
   description: string
-  name: string
-  languages: {
-    nodes: Node[]
-  }
+  title: string
+  img: string
 }
 
-interface Node {
-  name: string
-  color: string
-}
-
-const { url, description, name, languages } = Astro.props
-import Github from "../icons/GithubRounded.astro"
+const { project } = Astro.props
+const { url, description, title, img } = project
 ---
 
 <div
-  class="repo-item rounded shadow-lg cursor-pointer duration-200 hover:-translate-y-2"
+  class="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50"
 >
-  <h2 class="text-2xl font-extrabold max-w-[15ch] text-slate-300">{name}</h2>
-  <p>{description}</p>
-  <ul>
-    {
-      languages.nodes.map((language) => (
-        <li>
-          <p>{language.name}</p>
-        </li>
-      ))
-    }
-  </ul>
-  <div class="flex items-center gap-2 absolute top-4 right-4">
-    <a class="text-slate-400 hover:text-emerald-300" href={url}>
-      <Github width={24} height={24} />
-    </a>
+  <div
+    class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"
+  >
   </div>
+  <div class="z-10 sm:order-2 sm:col-span-6">
+    <h3>
+      <a
+        class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300 group/link text-base"
+        href={url}
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <span
+          class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"
+        >
+        </span>
+        <span>
+          {title}
+          <span class="inline-block">
+            <External
+              className="inline-block h-4 w-4 shrink-0 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-focus-visible:-translate-y-1 group-focus-visible:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+            />
+          </span>
+        </span>
+      </a>
+    </h3>
+
+    <p class="mt-2 text-sm leading-normal">
+      {description}
+    </p>
+  </div>
+
+  <img
+    alt={`${title} app`}
+    loading="lazy"
+    width="200"
+    height="48"
+    class="rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1"
+    src={img}
+  />
 </div>
-<style>
-  .repo-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    position: relative;
-    height: 100%;
-    padding: 2rem 1.75rem;
-    background-color: var(--light-navy);
-    overflow: auto;
-    color: var(--lightest-slate);
-  }
-</style>

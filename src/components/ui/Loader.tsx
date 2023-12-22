@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import anime from "animejs"
+
 import Logo from "../icons/Logo.tsx"
 
 interface Props {
@@ -7,22 +8,24 @@ interface Props {
 }
 
 const Loader = ({ finishLoading }: Props) => {
+  const [isMounted, setIsMounted] = useState(false)
+
   const animate = () => {
     const loader = anime.timeline({
-      complete: () => finishLoading(),
+      complete: () => (finishLoading ? finishLoading() : null),
     })
 
     loader
       .add({
         targets: "#logo path",
-        delay: 300,
-        duration: 1500,
+        delay: 100,
+        duration: 800,
         easing: "easeInOutQuart",
         strokeDashoffset: [anime.setDashoffset, 0],
       })
       .add({
         targets: "#logo #B",
-        duration: 700,
+        duration: 800,
         easing: "easeInOutQuart",
         opacity: 1,
       })
@@ -36,19 +39,21 @@ const Loader = ({ finishLoading }: Props) => {
       })
       .add({
         targets: ".loader",
-        duration: 200,
+        duration: 100,
         easing: "easeInOutQuart",
         opacity: 0,
         zIndex: -1,
       })
   }
 
-  const [isMounted, setIsMounted] = useState(false)
-
   useEffect(() => {
-    const timeout = setTimeout(() => setIsMounted(true), 10)
+    const timeout = setTimeout(() => setIsMounted(true), 100)
+
     animate()
-    return () => clearTimeout(timeout)
+
+    return () => {
+      clearTimeout(timeout)
+    }
   }, [])
 
   return (

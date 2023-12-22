@@ -1,61 +1,21 @@
 ---
 import Title from "../ui/Title.astro"
 import Container from "../ui/Container.astro"
-import { userRepositories } from "../../services/querys"
 import ProjectCard from "./ProjectCard.astro"
 
-const headers = {
-  "Content-Type": "application/json",
-  Authorization: "Bearer " + import.meta.env.GITHUB_TOKEN,
-}
-
-const repositories = await fetch("https://api.github.com/graphql", {
-  method: "POST",
-  headers,
-  body: JSON.stringify({ query: userRepositories }),
-})
-  .then((res) => {
-    if (!res.ok) {
-      console.log("Error: " + res.status)
-      throw new Error()
-    }
-    return res.json()
-  })
-  .then((jsonResponse) => jsonResponse.data.viewer.repositories.nodes)
-  .then((repos) =>
-    repos.map((repo) => ({
-      ...repo,
-      name: repo.name.replace(/[-_]/g, " "),
-    }))
-  )
-  .catch((err) => {
-    console.log(err)
-    return []
-  })
+import projects from "../../mocks/projects"
 ---
 
 <Container id="projects" reveal>
   <Title>Proyectos</Title>
 
-  <div class="repo-list">
+  <ul>
     {
-      repositories.map(({ languages, name, description, url }) => (
-        <ProjectCard
-          languages={languages}
-          url={url}
-          description={description}
-          name={name}
-        />
+      projects.map((project) => (
+        <li class="mb-12">
+          <ProjectCard project={project} />
+        </li>
       ))
     }
-  </div>
+  </ul>
 </Container>
-
-<style>
-  .repo-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 15px;
-    width: 100%;
-  }
-</style>

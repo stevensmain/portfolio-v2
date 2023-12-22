@@ -1,28 +1,46 @@
 ---
 import Container from "../ui/Container.astro"
-import Title from "../ui/Title.astro"
+
+import AstroBuild from "../icons/AstroBuild.astro"
+import Tailwind from "../icons/Tailwind.astro"
+import AWS from "../icons/AWS.astro"
 ---
 
 <Container id="contact" reveal>
   <div class="flex flex-col gap-5 text-center max-w-xl mx-auto">
-    <Title>What’s Next?</Title>
-    <h2 class="text-slate-300 text-5xl font-extrabold lg:text-6xl">
-      Get In Touch
-    </h2>
-    <p class="text-base text-slate-400">
-      My inbox is always open. Whether you have a question or just want to say
-      hi, I’ll try my best to get back to you!
-    </p>
-    <a
-      href="mailto:stevensgoldzyzz@gmail.com"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <button
-        class="text-slate-400 border-slate-400 border px-8 py-4 rounded duration-200 hover:bg-neutral-800"
+    <div class="flex gap-3 items-center justify-center">
+      <AstroBuild className="w-12 h-12" />
+      <Tailwind className="w-12 h-12" />
+      <AWS className="w-12 h-12" />
+    </div>
+
+    <p>
+      Built with
+      <a
+        href="https://astro.build/"
+        class="font-medium text-slate-400 hover:text-teal-300 focus-visible:text-teal-300"
+        target="_blank"
+        rel="noreferrer noopener"
       >
-        Mail me
-      </button>
-    </a>
+        Astro
+      </a>
+      and
+      <a
+        href="https://tailwindcss.com/"
+        class="font-medium text-slate-400 hover:text-teal-300 focus-visible:text-teal-300"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        Tailwind CSS
+      </a>, deployed with
+      <a
+        href="https://aws.amazon.com/"
+        class="font-medium text-slate-400 hover:text-teal-300 focus-visible:text-teal-300"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        AWS
+      </a>.
+    </p>
   </div>
 </Container>
