@@ -51,9 +51,11 @@ const sections = [
       Desarrollador Full-Stack
     </h3>
     <p class="mt-4 max-w-md leading-normal">
-      Soy un desarrollador orientado a la resolución de problemas con una pasión
-      por los desafíos, buscando activamente oportunidades en la industria de la
-      tecnología.
+      Soy un apasionado desarrollador web con experiencia destacada en fomentar
+      ambientes de trabajo altamente colaborativos, descubrir soluciones
+      innovadoras y asegurar la plena satisfacción del cliente. Mi experiencia
+      se centra en el desarrollo de sitios web orientados al consumidor,
+      haciendo uso creativo de HTML, CSS y JavaScript.
     </p>
 
     <nav class="nav hidden lg:block">
@@ -96,11 +98,11 @@ const sections = [
 
 <script>
   const sections = document.querySelectorAll("section")
-  const navLinks = document.querySelectorAll("header nav ul a")
 
   window.onscroll = () => {
     sections.forEach((sec) => {
-      let screentop = window.scrollY + 150
+      let screenMid = window.innerHeight / 2
+      let screentop = window.scrollY + screenMid
       let offset = sec.offsetTop
       let height = sec.offsetHeight
       let id = sec.getAttribute("id")
@@ -110,17 +112,17 @@ const sections = [
           `header nav ul a[href*=${id}] > span`
         )
 
-        sp1.classList.add("w-14", "bg-slate-200")
-        sp2.classList.remove("text-slate-500")
-        sp2.classList.add("text-slate-200")
+        sp1?.classList.add("w-14", "bg-slate-300")
+        sp2?.classList.remove("text-slate-500")
+        sp2?.classList.add("text-slate-200")
       }
 
-      if (offset + height < screentop || offset > screentop) {
+      if (offset + height + 150 < screentop || offset > screentop) {
         const [sp1, sp2] = document.querySelectorAll(
           `header nav ul a[href*=${id}] span`
         )
 
-        sp1?.classList.remove("w-14", "bg-slate-200")
+        sp1?.classList.remove("w-14", "bg-slate-300")
         sp2?.classList.remove("text-slate-200")
         sp2?.classList.add("text-slate-500")
       }
