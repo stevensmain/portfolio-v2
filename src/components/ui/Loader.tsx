@@ -47,13 +47,9 @@ const Loader = ({ finishLoading }: Props) => {
   }
 
   useEffect(() => {
-    const timeout = setTimeout(() => setIsMounted(true), 100)
+    setIsMounted(true)
 
     animate()
-
-    return () => {
-      clearTimeout(timeout)
-    }
   }, [])
 
   return (
