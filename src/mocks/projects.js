@@ -13,6 +13,13 @@ const projects = [
     url: "https://astro-spotify-clone.netlify.app/",
     img: "/img/astro-spotify.png",
   },
+  {
+    title: "8I - Astro clone",
+    description:
+      "Landing page para compañia orientada al desarrollo de soluciones tecnologicas basada en Chile, desarrollada en React.js. Esta integra conexion con un servicio para el manejo de correos utilizando EmailJS.",
+    url: "https://www.8i.cl/",
+    img: "/img/8i.png",
+  },
 ]
 
 export default projects
