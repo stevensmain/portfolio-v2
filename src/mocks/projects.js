@@ -14,7 +14,7 @@ const projects = [
     img: "/img/astro-spotify.png",
   },
   {
-    title: "8I - Astro clone",
+    title: "8I - Landing page",
     description:
       "Landing page para compañia orientada al desarrollo de soluciones tecnologicas basada en Chile, desarrollada en React.js. Esta integra conexion con un servicio para el manejo de correos utilizando EmailJS.",
     url: "https://www.8i.cl/",
