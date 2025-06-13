@@ -1,13 +1,13 @@
 ---
-import Layout from "../layouts/Layout.astro"
-import About from "../components/about/About.astro"
-import Footer from "../components/footer/Footer.astro"
-import Projects from "../components/projects/Projects.astro"
-import Experiences from "../components/experiences/Experiences.astro"
+import About from '../components/about/About.astro';
+import Experiences from '../components/experiences/Experiences.astro';
+import Footer from '../components/footer/Footer.astro';
+import Projects from '../components/projects/Projects.astro';
+import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Welcome to Astro.">
-  <main class="pt-24 lg:w-1/2">
+<Layout>
+  <main class="lg:w-1/2">
     <About />
     <Experiences />
     <Projects />
@@ -21,7 +21,7 @@ import Experiences from "../components/experiences/Experiences.astro"
     scroll-bar: none;
   }
   .sideline::after {
-    content: "";
+    content: '';
     background-color: slategray;
     display: block;
     position: relative;
@@ -34,3 +34,10 @@ import Experiences from "../components/experiences/Experiences.astro"
     transform: scaleY(1.1);
   }
 </style>
+
+<script>
+  import sr, { srConfig } from '../lib/scrollReveal';
+
+  const revealContainers = document.querySelectorAll('.reveal');
+  revealContainers.forEach((el) => sr.reveal(el, srConfig()));
+</script>
