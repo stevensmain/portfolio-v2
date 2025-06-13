@@ -1,22 +1,11 @@
 ---
 interface Props {
-  id?: string
-  reveal?: boolean
+  id?: string;
 }
 
-const { id = "", reveal } = Astro.props
+const { id = '' } = Astro.props;
 ---
 
-<section
-  id={id}
-  class=`mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24 ${reveal ? 'reveal' : ''}`
->
+<section id={id} class="py-16 md:py-24" aria-label={id}>
   <slot />
 </section>
-
-<script>
-  import sr, { srConfig } from "../../lib/scrollReveal"
-
-  const revealContainers = document.querySelectorAll(".reveal")
-  revealContainers.forEach((el) => sr.reveal(el, srConfig()))
-</script>

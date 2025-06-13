@@ -1,40 +1,41 @@
 ---
-import GithubRounded from "../icons/GithubRounded.astro"
-import LinkedIn from "../icons/LinkedIn.astro"
-import Mail from "../icons/Mail.astro"
+import GithubRounded from '../icons/GithubRounded.astro';
+import LinkedIn from '../icons/LinkedIn.astro';
+import Mail from '../icons/Mail.astro';
+import Text from '../ui/Text.astro';
 
 const rrss = [
   {
-    name: "GitHub",
-    href: "https://github.com/stevensmain",
+    name: 'GitHub',
+    href: 'https://github.com/stevensmain',
     icon: GithubRounded,
   },
   {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/stevens-carrasquel",
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/stevens-carrasquel',
     icon: LinkedIn,
   },
   {
-    name: "Mail",
-    href: "mailto:stevensgoldzyzz@gmail.com",
+    name: 'Mail',
+    href: 'mailto:stevensgoldzyzz@gmail.com',
     icon: Mail,
   },
-]
+];
 
 const sections = [
   {
-    label: "Acerca de mi",
-    id: "about",
+    label: 'Acerca de mi',
+    id: 'about',
   },
   {
-    label: "Experiencias",
-    id: "experiences",
+    label: 'Experiencias',
+    id: 'experiences',
   },
   {
-    label: "Proyectos",
-    id: "projects",
+    label: 'Proyectos',
+    id: 'projects',
   },
-]
+];
 ---
 
 <header
@@ -42,21 +43,16 @@ const sections = [
   id="hero"
 >
   <div>
-    <h2 class="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
-      Stivens Carrasquel
-    </h2>
-    <h3
-      class="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl"
-    >
+    <h2 class="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">Stivens Carrasquel</h2>
+    <h3 class="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
       Desarrollador Full-Stack
     </h3>
-    <p class="mt-4 max-w-md leading-normal">
-      Soy un apasionado desarrollador web con experiencia destacada en fomentar
-      ambientes de trabajo altamente colaborativos, descubrir soluciones
-      innovadoras y asegurar la plena satisfacción del cliente. Mi experiencia
-      se centra en el desarrollo de sitios web orientados al consumidor,
-      haciendo uso creativo de HTML, CSS y JavaScript.
-    </p>
+    <Text class="mt-4 max-w-md leading-normal text-slate-200">
+      Desarrollador Full-Stack con 5+ años creando aplicaciones web escalables. Especializado en
+      JavaScript, TypeScript, React, Node.js y Next.js, con experiencia en desarrollo de interfaces
+      modernas y APIs RESTful/GraphQL. Enfocado en la calidad del código y mejores prácticas de
+      desarrollo.
+    </Text>
 
     <nav class="nav hidden lg:block">
       <ul class="mt-8 w-max">
@@ -81,12 +77,7 @@ const sections = [
     {
       rrss.map(({ name, href, icon: Icon }) => (
         <li class="mr-5 text-xs">
-          <a
-            class="block hover:text-slate-200"
-            href={href}
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a class="block hover:text-slate-200" href={href} target="_blank" rel="noreferrer">
             <span class="sr-only">{name}</span>
             <Icon />
           </a>
@@ -97,46 +88,39 @@ const sections = [
 </header>
 
 <script>
-  window.addEventListener(
-    "load",
-    (event) => {
-      const [about, experience, projects] = document.querySelectorAll("section")
-
-      createObserver(about)
-      createObserver(experience)
-      createObserver(projects)
-    },
-    false
-  )
+  window.addEventListener('load', () => {
+    const [about, experience, projects] = document.querySelectorAll('section');
+    createObserver(about);
+    createObserver(experience);
+    createObserver(projects);
+  });
 
   function handleIntersect(entries) {
-    const id = entries[0].target.getAttribute("id")
+    const id = entries[0].target.getAttribute('id');
 
-    const [sp1, sp2] = document.querySelectorAll(
-      `header nav ul a[href*=${id}] span`
-    )
+    const [sp1, sp2] = document.querySelectorAll(`header nav ul a[href*=${id}] span`);
 
     if (entries[0].isIntersecting) {
-      sp1.classList.remove("w-8")
-      sp1.classList.remove("bg-slate-600")
-      sp2.classList.remove("text-slate-500")
-      sp1.classList.add("w-14")
-      sp1.classList.add("bg-slate-200")
-      sp2.classList.add("text-slate-200")
+      sp1.classList.remove('w-8');
+      sp1.classList.remove('bg-slate-600');
+      sp2.classList.remove('text-slate-500');
+      sp1.classList.add('w-14');
+      sp1.classList.add('bg-slate-200');
+      sp2.classList.add('text-slate-200');
     } else {
-      sp1.classList.remove("w-14")
-      sp1.classList.remove("bg-slate-200")
-      sp2.classList.remove("text-slate-200")
-      sp1.classList.add("bg-slate-600")
-      sp1.classList.add("w-8")
-      sp2.classList.add("text-slate-500")
+      sp1.classList.remove('w-14');
+      sp1.classList.remove('bg-slate-200');
+      sp2.classList.remove('text-slate-200');
+      sp1.classList.add('bg-slate-600');
+      sp1.classList.add('w-8');
+      sp2.classList.add('text-slate-500');
     }
   }
 
   function createObserver(target) {
     const observer = new IntersectionObserver(handleIntersect, {
-      rootMargin: "-230px",
-    })
-    observer.observe(target as Element)
+      rootMargin: '-230px',
+    });
+    observer.observe(target as Element);
   }
 </script>
