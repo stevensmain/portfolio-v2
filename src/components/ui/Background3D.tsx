@@ -1,10 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 const Background3D = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!containerRef.current) return;
 
     const scene = new THREE.Scene();
@@ -14,13 +15,17 @@ const Background3D = () => {
       0.1,
       1000,
     );
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    const renderer = new THREE.WebGLRenderer({
+      alpha: true,
+      antialias: true,
+      powerPreference: 'high-performance',
+    });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    containerRef.current.appendChild(renderer.domElement);
+    containerRef.current?.appendChild(renderer.domElement);
 
-    const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+    const geometry = new THREE.TorusKnotGeometry(10, 3, 50, 8);
     const material = new THREE.MeshPhongMaterial({
       color: 0x1864ab,
       wireframe: true,
@@ -65,8 +70,8 @@ const Background3D = () => {
 
     window.addEventListener('resize', handleResize);
     animate();
+    setIsLoaded(true);
 
-    // Cleanup function
     return () => {
       window.removeEventListener('resize', handleResize);
       if (containerRef.current) {
@@ -80,7 +85,9 @@ const Background3D = () => {
     <div
       ref={containerRef}
       id="background-3d"
-      className="pointer-events-none fixed inset-0 -z-10"
+      className={`pointer-events-none fixed inset-0 -z-10 transition-opacity duration-500 ${
+        isLoaded ? 'opacity-100' : 'opacity-0'
+      }`}
     />
   );
 };

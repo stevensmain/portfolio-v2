@@ -11,7 +11,7 @@ export interface Props {
 const {
   title = 'Stivens Carrasquel - Software Developer',
   description = 'Desarrollador Full-Stack con más de 5 años de experiencia en el desarrollo de aplicaciones web y móviles escalables. Dominio en JavaScript, Python, React, Node.js y Next.js. Especializado en renderizado del lado del servidor (SSR), optimización de rendimiento y construcción de APIs robustas con GraphQL y REST. Apasionado por el código limpio, las pruebas automatizadas y las metodologías ágiles.',
-  image = '/img/og-image.png',
+  image = '/img/og-image.webp',
 } = Astro.props;
 ---
 
@@ -22,6 +22,9 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Preload resources -->
+    <link href="/logo.svg" type="image/svg+xml" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
 
     <!-- Primary Meta Tags -->
@@ -54,8 +57,6 @@ const {
 
     <!-- Additional Meta Tags -->
     <meta name="theme-color" content="#0f172a" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="canonical" href={Astro.url} />
   </head>
 
@@ -65,7 +66,7 @@ const {
     <Background3D client:only="react" />
 
     <div
-      class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:flex lg:justify-between lg:gap-4 lg:px-24 lg:py-0"
+      class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 md:py-20 lg:flex lg:justify-between lg:gap-4 lg:px-24 lg:py-0"
     >
       <Navigation />
 
