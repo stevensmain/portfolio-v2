@@ -1,14 +1,32 @@
 import { defineConfig } from 'astro/config';
-import netlify from '@astrojs/netlify/functions';
+
 import react from '@astrojs/react';
+import netlify from '@astrojs/netlify';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [react()],
-  output: 'server',
-  adapter: netlify(),
+  output: 'static',
+
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      cssMinify: true,
+      minify: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'react-vendor': ['react', 'react-dom'],
+            'three-vendor': ['three'],
+          },
+        },
+      },
+    },
+    optimizeDeps: {
+      include: ['react', 'react-dom', 'three'],
+    },
   },
+
+  adapter: netlify(),
 });
