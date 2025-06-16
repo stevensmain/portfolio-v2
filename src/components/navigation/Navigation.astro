@@ -139,9 +139,5 @@ const sections = [
       const observer = createObserver(section);
       observers.push(observer);
     });
-
-    window.addEventListener('unload', () => {
-      observers.forEach((observer) => observer.disconnect());
-    });
   });
 </script>
