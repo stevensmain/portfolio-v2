@@ -23,8 +23,9 @@ const {
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Preload resources -->
-    <link href="/logo.svg" type="image/svg+xml" />
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/logo.svg" as="image" type="image/svg+xml" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
 
     <!-- Primary Meta Tags -->
@@ -63,7 +64,7 @@ const {
   <body
     class="bg-slate-900 leading-relaxed text-slate-400 antialiased selection:bg-teal-300 selection:text-teal-900"
   >
-    <Background3D client:idle />
+    <Background3D client:visible />
 
     <div
       class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 md:py-20 lg:flex lg:justify-between lg:gap-4 lg:px-24 lg:py-0"
