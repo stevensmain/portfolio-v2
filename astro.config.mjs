@@ -19,12 +19,16 @@ export default defineConfig({
           manualChunks: {
             'react-vendor': ['react', 'react-dom'],
             'three-vendor': ['three'],
+            scrollreveal: ['scrollreveal'],
           },
         },
       },
     },
     optimizeDeps: {
-      include: ['react', 'react-dom', 'three'],
+      include: ['react', 'react-dom', 'three', 'scrollreveal'],
+    },
+    ssr: {
+      noExternal: ['three', 'scrollreveal'],
     },
   },
 
