@@ -62,7 +62,7 @@ const sections = [
               <a class="group flex items-center py-3" href={`#${id}`}>
                 <span class="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-14 group-hover:bg-slate-200 group-focus-visible:w-14 group-focus-visible:bg-slate-200 motion-reduce:transition-none" />
 
-                <span class="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
+                <span class="nav-text text-xs font-bold tracking-widest text-slate-500 uppercase group-hover:text-slate-200 group-focus-visible:text-slate-200">
                   {label}
                 </span>
               </a>
@@ -73,7 +73,7 @@ const sections = [
     </nav>
   </div>
 
-  <ul class="ml-1 mt-8 flex items-center">
+  <ul class="mt-8 ml-1 flex items-center">
     {
       rrss.map(({ name, href, icon: Icon }) => (
         <li class="mr-5 text-xs">
@@ -88,39 +88,60 @@ const sections = [
 </header>
 
 <script>
-  window.addEventListener('load', () => {
-    const [about, experience, projects] = document.querySelectorAll('section');
-    createObserver(about);
-    createObserver(experience);
-    createObserver(projects);
-  });
+  const ACTIVE_CLASSES = {
+    indicator: {
+      active: ['w-14', 'bg-slate-200'],
+      inactive: ['w-8', 'bg-slate-600'],
+    },
+    text: {
+      active: ['text-slate-200'],
+      inactive: ['text-slate-500'],
+    },
+  };
 
-  function handleIntersect(entries) {
-    const id = entries[0].target.getAttribute('id');
-
-    const [sp1, sp2] = document.querySelectorAll(`header nav ul a[href*=${id}] span`);
-
-    if (entries[0].isIntersecting) {
-      sp1.classList.remove('w-8');
-      sp1.classList.remove('bg-slate-600');
-      sp2.classList.remove('text-slate-500');
-      sp1.classList.add('w-14');
-      sp1.classList.add('bg-slate-200');
-      sp2.classList.add('text-slate-200');
-    } else {
-      sp1.classList.remove('w-14');
-      sp1.classList.remove('bg-slate-200');
-      sp2.classList.remove('text-slate-200');
-      sp1.classList.add('bg-slate-600');
-      sp1.classList.add('w-8');
-      sp2.classList.add('text-slate-500');
-    }
+  function toggleClasses(element: Element, classes: string[], add: boolean) {
+    classes.forEach((className) => {
+      element.classList[add ? 'add' : 'remove'](className);
+    });
   }
 
-  function createObserver(target) {
+  function handleIntersect(entries: IntersectionObserverEntry[]) {
+    const entry = entries[0];
+    const id = entry.target.getAttribute('id');
+    if (!id) return;
+
+    const navElements = document.querySelectorAll(`header nav ul a[href*="${id}"] span`);
+    if (navElements.length !== 2) return;
+
+    const [indicator, text] = navElements;
+    const isIntersecting = entry.isIntersecting;
+
+    toggleClasses(indicator, ACTIVE_CLASSES.indicator.active, isIntersecting);
+    toggleClasses(indicator, ACTIVE_CLASSES.indicator.inactive, !isIntersecting);
+    toggleClasses(text, ACTIVE_CLASSES.text.active, isIntersecting);
+    toggleClasses(text, ACTIVE_CLASSES.text.inactive, !isIntersecting);
+  }
+
+  function createObserver(target: Element) {
     const observer = new IntersectionObserver(handleIntersect, {
       rootMargin: '-230px',
+      threshold: 0,
     });
-    observer.observe(target as Element);
+    observer.observe(target);
+    return observer;
   }
+
+  window.addEventListener('load', () => {
+    const sections = document.querySelectorAll('section[id]');
+    const observers: IntersectionObserver[] = [];
+
+    sections.forEach((section) => {
+      const observer = createObserver(section);
+      observers.push(observer);
+    });
+
+    window.addEventListener('unload', () => {
+      observers.forEach((observer) => observer.disconnect());
+    });
+  });
 </script>
