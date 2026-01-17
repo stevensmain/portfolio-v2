@@ -1,0 +1,8 @@
+---
+import clsx from 'clsx';
+const { class: className } = Astro.props;
+---
+
+<p class={clsx('text-base font-normal text-slate-400 mb-4', className)}>
+  <slot />
+</p>

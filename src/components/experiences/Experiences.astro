@@ -1,0 +1,121 @@
+---
+import ExperiencesCard from './ExperiencesCard.astro';
+
+import Container from '../ui/Container.astro';
+import Title from '../ui/Title.astro';
+
+const experiences = [
+  {
+    stack: [
+      'JavaScript',
+      'TypeScript',
+      'React.js',
+      'Next.js',
+      'React Native',
+      'JQuery',
+      'Redux',
+      'Zustand',
+      'Material UI',
+      'Styled Components',
+      'SCSS',
+      'AWS',
+      'PHP',
+      'Node.js',
+      'MySQL',
+      'Apache',
+      'Docker',
+      'Git',
+      'Linux',
+      'CI/CD',
+    ],
+    description:
+      'Lidero equipos de desarrollo en la implementación de soluciones tecnológicas empresariales. Gestiono la arquitectura técnica, establezco mejores prácticas y estándares de código, y superviso el desarrollo de aplicaciones web y móviles. Coordino la integración de servicios cloud, implemento pipelines de CI/CD y aseguro la calidad del código mediante revisiones y mentoring técnico.',
+    title: 'Tech Lead',
+    company: 'Cesa Management Solutions',
+    location: 'Montevideo, Uruguay',
+    range: '06/2022 - Actualmente',
+    url: 'https://www.linkedin.com/company/cesa-management-solutions/mycompany',
+  },
+  {
+    stack: [
+      'Javascript',
+      'TypeScript',
+      'React.js',
+      'Next.js',
+      'Redux',
+      'CSS Modules',
+      'SCSS',
+      'Node.js',
+      'Python',
+      'Express',
+      'Django',
+      'PostgreSQL',
+      'Docker',
+      'Web3.js',
+      'Git',
+      'CI/CD',
+    ],
+    description:
+      'Desarrollé aplicaciones web y landing pages especializadas en el ecosistema web3. Implementé integraciones con wallets para la gestión segura de activos digitales y desarrollé APIs RESTful para la interacción con contratos inteligentes. Trabajé en la integración de servicios blockchain y en el desarrollo de interfaces de usuario modernas y responsivas. Implementé soluciones de almacenamiento descentralizado y sistemas de autenticación web3.',
+    title: 'Desarrollador Full Stack',
+    company: 'Korvuss',
+    location: 'Medellin, Colombia',
+    range: '01/2021 - 06/2022',
+    url: 'https://co.linkedin.com/company/korvuss',
+  },
+  {
+    stack: [
+      'JavaScript',
+      'TypeScript',
+      'React.js',
+      'Next.js',
+      'Redux',
+      'CSS Modules',
+      'SCSS',
+      'Node.js',
+      'Express',
+      'Nest.js',
+      'MongoDB',
+      'PostgreSQL',
+      'Docker',
+      'Git',
+      'Linux',
+      'AWS',
+      'CI/CD',
+    ],
+    description:
+      'Desarrollé aplicaciones web full-stack para diversos clientes, implementando interfaces de usuario modernas con Bootstrap y Redux. Creé APIs RESTful con Node.js y gestioné bases de datos MongoDB para almacenamiento eficiente de datos. Trabajé en estrecha colaboración con los clientes para entender sus necesidades y entregar soluciones personalizadas que cumplieran con sus objetivos de negocio.',
+    title: 'Desarrollador Freelance',
+    company: 'Freelance',
+    location: 'Caracas, Venezuela',
+    range: '07/2020 - Actualmente',
+    url: '/',
+  },
+  {
+    stack: ['SAP', 'SQL', 'Excel'],
+    description:
+      'Gestioné y analicé bases de datos corporativas utilizando SAP y SQL para optimizar procesos empresariales. Desarrollé reportes y dashboards en Excel para la toma de decisiones ejecutivas. Implementé mejoras en los procesos de gestión de datos y documenté procedimientos técnicos para garantizar la continuidad operativa. Colaboré en la implementación de soluciones SAP para la gestión de recursos empresariales.',
+    title: 'Analista TI',
+    company: 'Empresas Polar',
+    location: 'Caracas, Venezuela',
+    range: '01/2018 - 05/2019',
+    url: 'https://www.linkedin.com/company/empresas-polar',
+  },
+];
+---
+
+<Container id="experiences" reveal>
+  <Title>Experiencia</Title>
+
+  <ul>
+    {
+      experiences.map((experience) => {
+        return (
+          <li class="reveal mb-12">
+            <ExperiencesCard experience={experience} />
+          </li>
+        );
+      })
+    }
+  </ul>
+</Container>
